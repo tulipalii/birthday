@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عيد ميلاد سعيد يا دعدوش 🎂</title>
+<meta name="description" content="هديتك جاهزة يا دعدوش… تورتة، وشموع بينفخها بنفسك. اضغط وافتحها يا بطل!">
+<meta property="og:title" content="عيد ميلاد سعيد يا دعدوش 🎂">
+<meta property="og:description" content="هديتك جاهزة… اضغط وافتحها!">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== واجهة عيد ميلاد دعدوش — ٢٢ (أمن عام) ===== */
+[hidden] { display: none !important; }
+html, body { margin: 0; padding: 0; }
+
+.bday-app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  color: #f6ead6;
+  font-family: 'Cairo', 'Amiri', sans-serif;
+  background:
+    radial-gradient(1100px 620px at 50% -8%, rgba(240, 192, 94, 0.12), transparent 62%),
+    radial-gradient(900px 520px at 85% 110%, rgba(232, 149, 92, 0.10), transparent 60%),
+    linear-gradient(to bottom, #0a1222 0%, #131f38 55%, #1b2b49 100%);
+}
+
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+.scene {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 44px 20px;
+}
+
+/* ---------- البوابة ---------- */
+.gate-badge {
+  width: 92px;
+  height: auto;
+  filter: drop-shadow(0 8px 22px rgba(240, 192, 94, 0.30));
+  animation: badgeFloat 4.5s ease-in-out infinite;
+}
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.gate-badge .star {
+  transform-origin: 50px 54px;
+  animation: starPulse 3.2s ease-in-out infinite;
+}
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); opacity: .92; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.gate-kicker {
+  margin: 28px 0 0;
+  font-family: 'Amiri', serif;
+  font-size: 1.05rem;
+  color: rgba(246, 234, 214, 0.72);
+}
+.gate-title {
+  font-family: 'Aref Ruqaa', serif;
+  font-size: clamp(2rem, 6.5vw, 3.1rem);
+  line-height: 1.55;
+  margin: 8px 0 18px;
+  color: #ffe6a6;
+  text-shadow: 0 4px 30px rgba(240, 192, 94, 0.25);
+}
+
+.enter-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Aref Ruqaa', serif;
+  font-size: clamp(1.2rem, 3.4vw, 1.5rem);
+  color: #f0c05e;
+  text-decoration: none;
+  padding: 10px 8px 16px;
+  transition: color .3s ease;
+  min-height: 44px;
+}
+.enter-link:hover, .enter-link:focus-visible { color: #ffd98a; outline: none; }
+.enter-link .arrow { transition: transform .3s ease; }
+.enter-link:hover .arrow, .enter-link:focus-visible .arrow { transform: translateX(-5px); }
+.enter-underline {
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  color: rgba(240, 192, 94, 0.75);
+}
+
+/* ---------- ستار الانتقال ---------- */
+#veil {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #0a1222;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .9s ease;
+}
+#veil.on { opacity: 1; pointer-events: auto; }
+
+/* ---------- مشهد العيد ---------- */
+.poem-inner { width: 100%; max-width: 780px; }
+
+.bignum {
+  font-family: 'Aref Ruqaa', serif;
+  font-weight: 700;
+  font-size: clamp(4.8rem, 17vw, 8.4rem);
+  line-height: 1.05;
+  background: linear-gradient(180deg, #ffedb8 0%, #f0c05e 52%, #c99b52 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 10px 30px rgba(240, 192, 94, 0.35));
+  animation: numIn 1.1s cubic-bezier(.2, .9, .3, 1.25) both;
+}
+@keyframes numIn {
+  from { opacity: 0; transform: translateY(18px) scale(.7); }
+  to   { opacity: 1; transform: none; }
+}
+.bignum.pulse { animation: numPulse .9s ease; }
+@keyframes numPulse {
+  40% { transform: scale(1.09); filter: drop-shadow(0 10px 42px rgba(255, 214, 120, .6)); }
+}
+
+.bignum-label {
+  letter-spacing: .14em;
+  font-size: .95rem;
+  color: rgba(246, 234, 214, 0.62);
+  margin-bottom: 24px;
+}
+
+.opening {
+  font-family: 'Aref Ruqaa', serif;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  line-height: 1.8;
+  margin: 0 0 10px;
+}
+.stanza {
+  font-size: clamp(1.02rem, 2.7vw, 1.22rem);
+  line-height: 2.1;
+  margin: 13px auto;
+  max-width: 640px;
+  color: rgba(246, 234, 214, 0.93);
+}
+.accent { color: #f0c05e; font-weight: 700; }
+
+.w {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(12px);
+  display: inline-block;
+  transition: opacity .5s ease, filter .5s ease, transform .5s ease;
+}
+.w.in { opacity: 1; filter: blur(0); transform: none; }
+
+/* ---------- التورتة ---------- */
+.cake-wrap {
+  margin: 34px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(28px) scale(.92);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .9, .3, 1.2);
+  pointer-events: none;
+}
+.cake-wrap.shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.cake-wrap.shown:hover { transform: translateY(-4px) scale(1.015); }
+.cake-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -34px -60px;
+  background: radial-gradient(50% 60% at 50% 60%, rgba(240, 192, 94, .16), transparent 70%);
+  pointer-events: none;
+}
+
+.candles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 10px;
+  width: 150px;
+  margin-bottom: -6px;
+  z-index: 2;
+  position: relative;
+}
+.candle {
+  position: relative;
+  width: 4px;
+  height: 26px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fdf3e7, #e8b76a 75%);
+}
+.candle:nth-child(odd) {
+  background: repeating-linear-gradient(45deg, #e07b54 0 3px, #fdf3e7 3px 6px);
+}
+.flame {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 9px;
+  height: 14px;
+  background: radial-gradient(50% 62% at 50% 68%, #fff7d6 0%, #ffd166 45%, #f08a3c 78%, rgba(240, 138, 60, 0) 100%);
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+  animation: flick .55s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 7px rgba(255, 190, 90, .85));
+  display: block;
+}
+.candle:nth-child(3n) .flame { animation-delay: .22s; }
+.candle:nth-child(4n) .flame { animation-delay: .41s; }
+.candle:nth-child(5n) .flame { animation-delay: .11s; }
+@keyframes flick {
+  from { transform: translateX(-50%) scale(1) rotate(-2deg); }
+  to   { transform: translateX(-50%) scale(1.14) rotate(2.5deg); }
+}
+.candle::after {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 4px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(214, 214, 214, 0), rgba(214, 214, 214, .8));
+  opacity: 0;
+  transform: translate(-50%, 0);
+}
+.cake.blown .flame {
+  opacity: 0;
+  transform: translateX(-50%) scale(.1) !important;
+  transition: opacity .3s ease, transform .3s ease;
+  animation: none;
+}
+.cake.blown .candle::after { animation: smoke 1.5s ease-out forwards; }
+@keyframes smoke {
+  0%   { opacity: .75; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0;   transform: translate(-62%, -36px) scale(2); }
+}
+
+.cake-top {
+  width: min(88vw, 320px);
+  height: 30px;
+  background: linear-gradient(180deg, #fff3dd, #f3d7a4);
+  border-radius: 14px 14px 6px 6px;
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 -5px 10px rgba(160, 110, 50, .16);
+}
+.cake-top::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: radial-gradient(circle at 8px -3px, #fff3dd 9px, transparent 10px);
+  background-size: 24px 12px;
+  background-repeat: repeat-x;
+}
+.cake-body {
+  width: min(92vw, 352px);
+  height: 86px;
+  background: linear-gradient(180deg, #7d4d2c, #5d3620 80%);
+  border-radius: 12px;
+  margin-top: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 6px 12px rgba(0, 0, 0, .28);
+}
+.cake-body::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(240, 192, 94, .28), rgba(240, 192, 94, .05));
+}
+.cake-num {
+  font-family: 'Aref Ruqaa', serif;
+  font-size: 2.1rem;
+  color: #f6d98a;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+}
+.plate {
+  width: min(96vw, 410px);
+  height: 16px;
+  background: linear-gradient(180deg, #eae3d2, #c8bda4);
+  border-radius: 50% / 62%;
+  margin-top: 5px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+}
+
+/* ---------- التلميح والختام ---------- */
+.hint {
+  margin-top: 18px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #f0c05e;
+  opacity: 0;
+  transition: opacity .6s ease;
+  animation: hintPulse 1.9s ease-in-out infinite;
+}
+.hint.shown { opacity: 1; }
+@keyframes hintPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+}
+
+.finale {
+  margin-top: 22px;
+  font-family: 'Aref Ruqaa', serif;
+  font-size: clamp(1.5rem, 5vw, 2.3rem);
+  line-height: 1.7;
+  color: #ffe6a6;
+  text-shadow: 0 0 26px rgba(240, 192, 94, .5);
+  opacity: 0;
+  transform: scale(.7);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2, .9, .3, 1.4);
+}
+.finale.show { opacity: 1; transform: none; }
+
+/* ---------- الأزرار والرسالة ---------- */
+.poem-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 26px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .6s ease, transform .6s ease;
+  pointer-events: none;
+}
+.poem-actions.shown { opacity: 1; transform: none; pointer-events: auto; }
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(240, 192, 94, .08);
+  border: 1px solid rgba(240, 192, 94, .42);
+  color: #f0c05e;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-family: 'Cairo', sans-serif;
+  font-size: .92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .25s ease, color .25s ease;
+  min-height: 44px;
+}
+.ghost:hover { background: rgba(240, 192, 94, .18); color: #ffe6a6; }
+
+#toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%) translateY(18px);
+  background: rgba(14, 22, 40, .94);
+  border: 1px solid rgba(240, 192, 94, .45);
+  color: #ffe6a6;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: .92rem;
+  opacity: 0;
+  transition: opacity .4s ease, transform .4s ease;
+  z-index: 60;
+  pointer-events: none;
+  max-width: min(88vw, 420px);
+  text-align: center;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 420px) {
+  .candles { gap: 14px 9px; width: 144px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gate-badge, .gate-badge .star, .flame, .hint, .cake-wrap.shown { animation: none !important; }
+  .w { transition: none; opacity: 1; filter: none; transform: none; }
+}
+</style>
+</head>
+<body>
+<div class="bday-app">
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <!-- البوابة -->
+  <section id="gate" class="scene" aria-label="البداية">
+    <svg class="gate-badge" viewBox="0 0 100 116" width="92" height="107" aria-hidden="true">
+      <defs>
+        <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f7dc92"/>
+          <stop offset=".55" stop-color="#dcb26a"/>
+          <stop offset="1" stop-color="#b98f45"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 4 L88 16 V52 C88 80 72 98 50 110 C28 98 12 80 12 52 V16 Z"
+        fill="url(#gGold)" stroke="#8a6a2f" stroke-width="2.5"/>
+      <path d="M50 13 L80 22 V52 C80 75 67 90 50 100 C33 90 20 75 20 52 V22 Z"
+        fill="none" stroke="rgba(10,18,34,.35)" stroke-width="2"/>
+      <path class="star" d="M50 33 L56 46.6 70.7 48.4 60 58.3 63 72.8 50 65.3 37 72.8 40 58.3 29.3 48.4 44 46.6 Z" fill="#0e1a30" opacity=".88"/>
+    </svg>
+
+    <p class="gate-kicker">معليش… اليوم مش متل كل الأيام</p>
+    <h1 class="gate-title">هديتك جاهزة يا دعدوش</h1>
+
+    <a class="enter-link" id="enterLink" href="#عيد">
+      اضغط… وافتحها
+      <svg class="arrow" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"/>
+        <path d="M11 6l-6 6 6 6"/>
+      </svg>
+      <svg class="enter-underline" viewBox="0 0 220 3" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="220" y1="1.5" x2="0" y2="1.5" stroke="currentColor" stroke-width="1.1" stroke-dasharray="7 6" opacity=".7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- مشهد العيد -->
+  <section id="poem" class="scene" hidden aria-label="تهنية عيد الميلاد">
+    <div class="poem-inner">
+      <div class="bignum" id="bignum" aria-hidden="true">٢٢</div>
+      <div class="bignum-label">عام من العمر</div>
+
+      <h1 class="opening">
+        <span class="ph"><span class="w accent">دعدوش</span> <span class="w">البطل…</span></span>
+        <span class="ph"><span class="w">كل</span> <span class="w">عام</span> <span class="w">وانت</span> <span class="w accent">بألف</span> <span class="w">خير</span> <span class="w">يا</span> <span class="w accent">بطل!</span></span>
+      </h1>
+
+      <p class="stanza">
+        <span class="ph"><span class="w">سنينك</span> <span class="w accent">كتار</span> <span class="w accent">وحلوين</span> <span class="w">متلك…</span></span>
+      </p>
+
+      <p class="stanza">
+        <span class="ph"><span class="w">ونشالله</span> <span class="w">منشوفك</span> <span class="w">أحلى</span> <span class="w accent">سيادتو</span> <span class="w" data-fx="burst">بسورية</span> <span class="w">كلها…</span></span>
+      </p>
+
+      <p class="stanza">
+        <span class="ph"><span class="w">ونشالله</span> <span class="w">ربنا</span> <span class="w">يطعمك</span> <span class="w accent" data-fx="cake">عمرة</span> <span class="w">وزيارة</span> <span class="w">بيت</span> <span class="w">الله</span> <span class="w">الحرام</span> <span class="w accent" data-fx="bigburst">لتدعيلنا!</span></span>
+      </p>
+
+      <!-- التورتة -->
+      <div class="cake-wrap cake" id="cakeWrap" role="button" tabindex="0" aria-label="انفخ شموع التورتة">
+        <div class="candles" id="candles" aria-hidden="true"></div>
+        <div class="cake-top" aria-hidden="true"></div>
+        <div class="cake-body" aria-hidden="true"><span class="cake-num">٢٢</span></div>
+        <div class="plate" aria-hidden="true"></div>
+      </div>
+
+      <p class="hint" id="hint">اضغط ع التورتة… وانفخ الشمع!</p>
+
+      <div class="finale" id="finale" role="status">كل عام وانت بألف خير يا دعدوش البطل!</div>
+
+      <div class="poem-actions" id="poemActions">
+        <button class="ghost" id="replayBtn" type="button">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-2.6-6.4"/>
+            <path d="M21 3v6h-6"/>
+          </svg>
+          <span>أعد المشهد</span>
+        </button>
+        <button class="ghost" id="copyBtn" type="button">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"/>
+            <path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+          </svg>
+          <span>انسخ الرابط</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div id="veil" aria-hidden="true"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function $(id) { return document.getElementById(id); }
+  var canvas = $('sky'), gate = $('gate'), poem = $('poem'), veil = $('veil'),
+      bignum = $('bignum'), cakeWrap = $('cakeWrap'), hint = $('hint'), finale = $('finale'),
+      actions = $('poemActions'), enterLink = $('enterLink'), replayBtn = $('replayBtn'),
+      copyBtn = $('copyBtn'), toastEl = $('toast');
+  var ctx = canvas.getContext('2d');
+
+  document.title = 'عيد ميلاد سعيد يا دعدوش 🎂';
+
+  /* شموع التورتة: ٢٢ شمعة */
+  var candlesEl = $('candles');
+  for (var ci = 0; ci < 22; ci++) {
+    var cd = document.createElement('div');
+    cd.className = 'candle';
+    cd.innerHTML = '<i class="flame"></i>';
+    candlesEl.appendChild(cd);
+  }
+
+  /* ====== الخلفية: نجوم + تكات + بالونات + ألعاب نارية ====== */
+  var Wd = 0, Hd = 0;
+  var stars = [], confs = [], balloons = [], sparks = [];
+  var pointer = { nx: .5, ny: .5, x: -9999, y: -9999, active: false };
+
+  var CONF_COLORS = ['#f0c05e', '#ffe6a6', '#e8955c', '#fdf3e7', '#d9b26c', '#c96f43'];
+  var BALLOON_COLORS = ['#f0c05e', '#fdf3e7', '#e8955c', '#d9b26c', '#c96f43'];
+
+  function buildStars() {
+    stars.length = 0;
+    var count = Math.min(110, Math.round((Wd * Hd) / 14000));
+    for (var i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * Wd, y: Math.random() * Hd * .8,
+        r: .4 + Math.random() * 1.2,
+        tw: .6 + Math.random() * 1.6,
+        ph: Math.random() * Math.PI * 2,
+        depth: .3 + Math.random() * .7
+      });
+    }
+  }
+
+  function buildConf() {
+    confs.length = 0;
+    var count = Math.min(90, Math.round((Wd * Hd) / 16000));
+    for (var i = 0; i < count; i++) {
+      confs.push({
+        x: Math.random() * Wd, y: Math.random() * Hd,
+        w: 5 + Math.random() * 5, h: 8 + Math.random() * 7,
+        vy: 26 + Math.random() * 46,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() * 2 - 1) * 2.6,
+        sway: .5 + Math.random() * 1.1,
+        ph: Math.random() * Math.PI * 2,
+        color: CONF_COLORS[(Math.random() * CONF_COLORS.length) | 0],
+        depth: .35 + Math.random() * .65
+      });
+    }
+  }
+
+  function buildBalloons() {
+    balloons.length = 0;
+    var count = Math.max(5, Math.round(Wd / 260));
+    for (var i = 0; i < count; i++) {
+      balloons.push({
+        x: Math.random() * Wd, y: Hd + Math.random() * Hd * 1.4,
+        r: 16 + Math.random() * 14,
+        vy: 12 + Math.random() * 12,
+        sway: .4 + Math.random() * .7,
+        ph: Math.random() * Math.PI * 2,
+        color: BALLOON_COLORS[(Math.random() * BALLOON_COLORS.length) | 0],
+        depth: .4 + Math.random() * .6
+      });
+    }
+  }
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    Wd = window.innerWidth; Hd = window.innerHeight;
+    canvas.width = Math.round(Wd * dpr);
+    canvas.height = Math.round(Hd * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildStars();
+    buildConf();
+  }
+  buildBalloons();
+
+  /* انفجار ألعاب نارية */
+  function firework(x, y, big) {
+    if (REDUCED) return;
+    if (big === undefined) big = true;
+    var colors = ['255,209,102', '255,236,210', '244,162,97', '217,178,108', '236,142,84'];
+    var n = big ? 84 : 48;
+    for (var i = 0; i < n; i++) {
+      var ang = (Math.PI * 2 * i) / n + (Math.random() * .3 - .15);
+      var sp = (big ? 70 : 50) + Math.random() * (big ? 200 : 130);
+      sparks.push({
+        x: x, y: y,
+        vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
+        life: 1, decay: .55 + Math.random() * .55,
+        color: colors[(Math.random() * colors.length) | 0],
+        size: 1.6 + Math.random() * 2.4,
+        g: 130, rot: 0, vr: 0,
+        rect: false, lighter: true
+      });
+    }
+  }
+
+  /* مطر تكات من نقطة */
+  function confettiBurst(x, y, n) {
+    if (REDUCED) return;
+    for (var i = 0; i < n; i++) {
+      var ang = -Math.PI / 2 + (Math.random() * 1.3 - .65);
+      var sp = 130 + Math.random() * 240;
+      sparks.push({
+        x: x, y: y,
+        vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
+        life: 1, decay: .8 + Math.random() * .5,
+        color: CONF_COLORS[(Math.random() * CONF_COLORS.length) | 0],
+        size: 3.5 + Math.random() * 4,
+        g: 300,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() * 2 - 1) * 7,
+        rect: true, lighter: false
+      });
+    }
+  }
+
+  function drawBalloon(b, t) {
+    var x = b.x + Math.sin(t * b.sway + b.ph) * 14;
+    ctx.save();
+    ctx.translate(x, b.y);
+    ctx.globalAlpha = .88;
+    ctx.strokeStyle = 'rgba(246,234,214,.30)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, b.r + 5);
+    ctx.quadraticCurveTo(Math.sin(t * b.sway + b.ph + 1.2) * 12, b.r + 26, Math.sin(t * b.sway + b.ph) * 6, b.r + 48);
+    ctx.stroke();
+    ctx.fillStyle = b.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, b.r * .8, b.r, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.22)';
+    ctx.beginPath();
+    ctx.ellipse(-b.r * .26, -b.r * .34, b.r * .17, b.r * .3, -.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = b.color;
+    ctx.beginPath();
+    ctx.moveTo(0, b.r + 1);
+    ctx.lineTo(-4, b.r + 7);
+    ctx.lineTo(4, b.r + 7);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+    ctx.globalAlpha = 1;
+  }
+
+  var last = performance.now();
+  var raf = 0;
+
+  function frame(now) {
+    var dt = Math.min(.05, (now - last) / 1000);
+    last = now;
+    var t = now / 1000;
+    ctx.clearRect(0, 0, Wd, Hd);
+
+    var ox = (pointer.nx - .5) * 2;
+    var oy = (pointer.ny - .5) * 2;
+
+    /* نجوم */
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var a = .18 + .5 * (.5 + .5 * Math.sin(t * s.tw + s.ph));
+      ctx.globalAlpha = a;
+      ctx.fillStyle = '#ffe9c4';
+      ctx.beginPath();
+      ctx.arc(s.x + ox * 8 * s.depth, s.y + oy * 6 * s.depth, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    /* تكات متساقطة */
+    for (i = 0; i < confs.length; i++) {
+      var c = confs[i];
+      if (!REDUCED) {
+        c.y += c.vy * dt;
+        c.rot += c.vr * dt;
+        c.x += Math.sin(t * c.sway + c.ph) * 16 * dt;
+        if (c.y > Hd + 24) { c.y = -24; c.x = Math.random() * Wd; }
+        if (c.x < -24) c.x = Wd + 24;
+        if (c.x > Wd + 24) c.x = -24;
+      }
+      ctx.save();
+      ctx.translate(c.x + ox * 9 * c.depth, c.y + oy * 6 * c.depth);
+      ctx.rotate(c.rot);
+      ctx.fillStyle = c.color;
+      ctx.globalAlpha = .82;
+      ctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h * (0.62 + 0.38 * Math.abs(Math.sin(t * 2 + c.ph))));
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+
+    /* بالونات */
+    for (i = 0; i < balloons.length; i++) {
+      var b = balloons[i];
+      if (!REDUCED) {
+        b.y -= b.vy * dt;
+        if (b.y < -b.r * 2.6) {
+          b.y = Hd + 40 + Math.random() * 160;
+          b.x = Math.random() * Wd;
+          b.color = BALLOON_COLORS[(Math.random() * BALLOON_COLORS.length) | 0];
+          b.r = 16 + Math.random() * 14;
+        }
+      }
+      drawBalloon(b, t);
+    }
+
+    /* شرارات */
+    for (i = sparks.length - 1; i >= 0; i--) {
+      var sp2 = sparks[i];
+      sp2.life -= sp2.decay * dt;
+      if (sp2.life <= 0) { sparks.splice(i, 1); continue; }
+      sp2.vx *= (1 - 1.6 * dt);
+      sp2.vy += sp2.g * dt;
+      sp2.vy *= (1 - .35 * dt);
+      sp2.x += sp2.vx * dt;
+      sp2.y += sp2.vy * dt;
+      sp2.rot += sp2.vr * dt;
+      ctx.globalCompositeOperation = sp2.lighter ? 'lighter' : 'source-over';
+      ctx.globalAlpha = Math.max(0, Math.min(1, sp2.life));
+      if (sp2.rect) {
+        ctx.save();
+        ctx.translate(sp2.x, sp2.y);
+        ctx.rotate(sp2.rot);
+        ctx.fillStyle = sp2.color;
+        ctx.fillRect(-sp2.size / 2, -sp2.size / 2, sp2.size, sp2.size * .72);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = 'rgba(' + sp2.color + ',1)';
+        ctx.beginPath();
+        ctx.arc(sp2.x, sp2.y, sp2.size * sp2.life, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1;
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', function (e) {
+    pointer.nx = e.clientX / Wd; pointer.ny = e.clientY / Hd;
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+  }, { passive: true });
+  document.addEventListener('pointerout', function (e) { if (!e.relatedTarget) pointer.active = false; });
+  resize();
+  raf = requestAnimationFrame(frame);
+
+  /* ====== إدارة المشهدين ====== */
+  var wordEls = Array.prototype.slice.call(poem.querySelectorAll('.w'));
+  var timers = [];
+  var playing = false, poemDone = false, blown = false, transitioning = false;
+
+  function later(fn, ms) { timers.push(window.setTimeout(fn, ms)); }
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+  function pulseNum() {
+    bignum.classList.remove('pulse');
+    void bignum.offsetWidth;
+    bignum.classList.add('pulse');
+  }
+
+  function blowCandles() {
+    if (blown || !poemDone) return;
+    blown = true;
+    cakeWrap.classList.add('blown');
+    hint.classList.remove('shown');
+    confettiBurst(Wd / 2, Hd * .55, 110);
+    later(function () { firework(Wd * .3, Hd * .3); }, 120);
+    later(function () { firework(Wd * .7, Hd * .24); }, 460);
+    later(function () { firework(Wd * .5, Hd * .16, false); }, 820);
+    later(pulseNum, 500);
+    later(function () { finale.classList.add('show'); }, 750);
+    later(function () { actions.classList.add('shown'); }, 1600);
+  }
+
+  cakeWrap.addEventListener('click', function (e) { e.stopPropagation(); blowCandles(); });
+  cakeWrap.addEventListener('keydown', function (e) {
+    if (!poemDone) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); blowCandles(); }
+  });
+
+  function resetAll() {
+    clearTimers();
+    wordEls.forEach(function (w) { w.classList.remove('in'); });
+    bignum.classList.remove('pulse');
+    cakeWrap.classList.remove('shown', 'blown');
+    hint.classList.remove('shown');
+    finale.classList.remove('show');
+    actions.classList.remove('shown');
+    poem.scrollTop = 0;
+    playing = false; poemDone = false; blown = false;
+  }
+
+  function showAllInstant() {
+    clearTimers();
+    wordEls.forEach(function (w) { w.classList.add('in'); });
+    cakeWrap.classList.add('shown');
+    hint.classList.add('shown');
+    actions.classList.add('shown');
+    playing = false; poemDone = true;
+  }
+
+  function playGreeting() {
+    if (REDUCED) { showAllInstant(); return; }
+    resetAll();
+    playing = true;
+
+    var t = 1100;
+    var lastStanza = null, lastPhrase = null;
+
+    wordEls.forEach(function (w) {
+      var st = w.closest('.stanza') || w.closest('.opening');
+      var ph = w.closest('.ph');
+      if (lastStanza && st !== lastStanza) t += 760;       /* وقفة بين الفقرات */
+      else if (lastPhrase && ph !== lastPhrase) t += 360;  /* نفَس بين الفواصل */
+      later(function () {
+        w.classList.add('in');
+        var fx = w.getAttribute('data-fx');
+        if (fx === 'burst') later(function () { confettiBurst(Wd / 2, Hd * .38, 46); }, 260);
+        if (fx === 'bigburst') later(function () { confettiBurst(Wd / 2, Hd * .4, 70); firework(Wd * .5, Hd * .22, false); }, 260);
+        if (fx === 'cake') later(function () { cakeWrap.classList.add('shown'); }, 420);
+      }, t);
+      lastStanza = st; lastPhrase = ph;
+      t += 58;
+    });
+
+    later(function () { hint.classList.add('shown'); playing = false; poemDone = true; }, t + 900);
+  }
+
+  /* النقر أثناء العرض يُكمل المشهد فوراً */
+  poem.addEventListener('click', function () { if (playing && !poemDone) showAllInstant(); });
+
+  /* ====== الانتقال بين الصفحتين ====== */
+  function goToPoem(instant) {
+    document.title = 'عيد ميلاد سعيد يا دعدوش 🎂';
+    var swap = function () {
+      gate.hidden = true;
+      poem.hidden = false;
+      veil.classList.remove('on');
+      try { history.replaceState(null, '', '#عيد'); } catch (e) {}
+      playGreeting();
+      window.setTimeout(function () { transitioning = false; }, 600);
+    };
+    if (instant) {
+      veil.style.transition = 'none';
+      veil.classList.add('on');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          veil.style.transition = '';
+          swap();
+        });
+      });
+    } else {
+      if (transitioning) return;
+      transitioning = true;
+      veil.classList.add('on');
+      window.setTimeout(swap, 950);
+    }
+  }
+
+  enterLink.addEventListener('click', function (e) { e.preventDefault(); goToPoem(false); });
+
+  /* إن فُتح الرابط متضمناً #عيد يبدأ من المشهد مباشرة */
+  var h = location.hash || '';
+  try { h = decodeURIComponent(h); } catch (e) {}
+  if (/عيد|hbd|birthday/i.test(h)) goToPoem(true);
+
+  /* ====== الأزرار والرسائل ====== */
+  var toastTimer = 0;
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () { toastEl.classList.remove('show'); }, 2800);
+  }
+
+  replayBtn.addEventListener('click', function (e) { e.stopPropagation(); playGreeting(); });
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); resolve(); } catch (e) { reject(new Error('copy-failed')); }
+      ta.remove();
+    });
+  }
+
+  copyBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    copyText(location.href)
+      .then(function () { showToast('اننسخ الرابط… ابعثو للناس عشان يفرحوا معك'); })
+      .catch(function () { showToast('تعذّر النسخ — خذ الرابط من شريط المتصفح'); });
+  });
+})();
+</script>
+</body>
+</html>
