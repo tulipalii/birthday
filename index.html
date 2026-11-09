@@ -448,7 +448,7 @@ html, body { margin: 0; padding: 0; }
   <!-- مشهد العيد -->
   <section id="poem" class="scene" hidden aria-label="تهنية عيد الميلاد">
     <div class="poem-inner">
-      <div class="bignum" id="bignum" aria-hidden="true">٢٢</div>
+      <div class="bignum" id="bignum" aria-hidden="true">٢٣</div>
       <div class="bignum-label">عام من العمر</div>
 
       <h1 class="opening">
@@ -457,7 +457,11 @@ html, body { margin: 0; padding: 0; }
       </h1>
 
       <p class="stanza">
-        <span class="ph"><span class="w">سنينك</span> <span class="w accent">كتار</span> <span class="w accent">وحلوين</span> <span class="w">متلك…</span></span>
+        <span class="ph"><span class="w accent" data-fx="burst">٢٣</span> <span class="w">عام</span> <span class="w">من</span> <span class="w">العمر…</span> <span class="w">سنينك</span> <span class="w accent">كتار</span> <span class="w accent">وحلوين</span> <span class="w">متلك…</span></span>
+      </p>
+
+      <p class="stanza">
+        <span class="ph"><span class="w">يعطيك</span> <span class="w accent">القوة</span> <span class="w">والصحة</span> <span class="w">يا</span> <span class="w">بطل…</span> <span class="w">وثبتك</span> <span class="w">عالخدمة،</span> <span class="w">ويسعد</span> <span class="w">قلبك</span> <span class="w">متل</span> <span class="w">ما</span> <span class="w accent">بتسعد</span> <span class="w">الناس.</span></span>
       </p>
 
       <p class="stanza">
@@ -465,14 +469,19 @@ html, body { margin: 0; padding: 0; }
       </p>
 
       <p class="stanza">
-        <span class="ph"><span class="w">ونشالله</span> <span class="w">ربنا</span> <span class="w">يطعمك</span> <span class="w accent" data-fx="cake">عمرة</span> <span class="w">وزيارة</span> <span class="w">بيت</span> <span class="w">الله</span> <span class="w">الحرام</span> <span class="w accent" data-fx="bigburst">لتدعيلنا!</span></span>
+        <span class="ph"><span class="w">ونشالله</span> <span class="w">ربنا</span> <span class="w">يطعمك</span> <span class="w accent">عمرة</span> <span class="w">وزيارة</span> <span class="w">بيت</span> <span class="w">الله</span> <span class="w">الحرام</span> <span class="w">لتدعيلنا!</span></span>
+      </p>
+
+      <p class="stanza">
+        <span class="ph"><span class="w accent" data-fx="cake">انفخ</span> <span class="w">بالشموع</span> <span class="w">يا</span> <span class="w">بطل…</span></span>
+        <span class="ph"><span class="w">واطلب</span> <span class="w">يا</span> <span class="w">رب</span> <span class="w">من</span> <span class="w">قلبك،</span> <span class="w">لأنك</span> <span class="w accent">تستاهل</span> <span class="w">كل</span> <span class="w" data-fx="bigburst">خير.</span></span>
       </p>
 
       <!-- التورتة -->
       <div class="cake-wrap cake" id="cakeWrap" role="button" tabindex="0" aria-label="انفخ شموع التورتة">
         <div class="candles" id="candles" aria-hidden="true"></div>
         <div class="cake-top" aria-hidden="true"></div>
-        <div class="cake-body" aria-hidden="true"><span class="cake-num">٢٢</span></div>
+        <div class="cake-body" aria-hidden="true"><span class="cake-num">٢٣</span></div>
         <div class="plate" aria-hidden="true"></div>
       </div>
 
@@ -517,9 +526,9 @@ html, body { margin: 0; padding: 0; }
 
   document.title = 'عيد ميلاد سعيد يا دعدوش 🎂';
 
-  /* شموع التورتة: ٢٢ شمعة */
+  /* شموع التورتة: ٢٣ شمعة */
   var candlesEl = $('candles');
-  for (var ci = 0; ci < 22; ci++) {
+  for (var ci = 0; ci < 23; ci++) {
     var cd = document.createElement('div');
     cd.className = 'candle';
     cd.innerHTML = '<i class="flame"></i>';
